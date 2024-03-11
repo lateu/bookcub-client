@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+       
+        <img src="../../../assets/images/logo.jpg"   width="50" height="50">
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a [routerLink]="['/club']" ><i class="menu-item">home</i></a></li>
+        <li ><a routerLink="club" routerLinkActive="active"><i class="menu-item">Club</i></a></li>
+        <li><a routerLink="/message-editor"><i class="menu-item">Message</i></a></li>
+        <li ><a routerLink="/journal"><i class="menu-item">Journal</i></a></li>
+        
+        <li><a routerLink="/registration"><i class="menu-item">Registration</i></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/registration"><span class="glyphicon glyphicon-user"></span><i class="menu-item">Sign Up</i> </a></li>
+        <li><a routerLink="#"><span class="glyphicon glyphicon-log-in"></span> <i class="menu-item">Login</i></a></li>
+      </ul>
+    </div>
+  </nav>
+

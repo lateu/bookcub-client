@@ -1,0 +1,48 @@
+    <div class="container" id="clubContainer">
+        <div class="bookclubcreationheader"> BOOKCLUB CREATION FORM</div><br /> 
+        <form [formGroup]="profileForm" >
+
+            <div class="container">
+                <input type="search" placeholder="Search criteras"  formControlName="bookName" #key_words/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="BookSearch(key_words.value)">Search</button>
+            </div><br /> 
+
+
+            <div class="container" id="selection-locId">
+                <h3 id="selection-title">Select Book</h3>
+
+                    <div class="form-group" id="selection-div">
+                        <label for="website">Book:</label>
+                        <select  formControlName="bookSelected" class="form-control" name="bookSelected" (ngModelChange)="DisplayBookSelected($event)">
+                        <option disabled>Select book</option>                   
+                        <option *ngFor="let b of googleBooks ; let i = index"
+                                [value]="b.volumeInfo.industryIdentifiers[0].identifier"
+                                (click)="DisplayBookSelected(b.volumeInfo.authors[0])">{{b.volumeInfo.title}}</option>
+                        </select>
+                    </div>
+                    
+                    
+                    <br />  
+                    <div id="selectednodeId">
+
+                    </div>   
+                
+                    
+                    <div class="form-group">
+                        <label for="colFormLabelSm">BookClub description</label>
+                        <textarea id="colFormLabelSm" class="form-control"  formControlName="BookClubDescription" rows="3" placeholder="type Club description"></textarea>
+                    </div><br />  
+                    
+                    
+                    <div class="form-group">
+                        <label for="clubIdInput">Club Seq-Id</label>
+                        <input type="text" class="form-control" readonly id="clubIdInput" placeholder="this field is automaticaly filled">
+                    </div><br />
+                                
+                    <button  id="selectionid" [disabled]="!profileForm.valid">Submit</button>
+            
+            </div>
+        
+        </form>
+
+    </div>
