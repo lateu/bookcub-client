@@ -10,13 +10,17 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import{MessageEditorComponent} from './component/message-editor/message-editor.component'
+import{MessageEditorComponent} from './component/message-editor/message-editor.component';
+import { ListClubsComponent } from './component/list-clubs/list-clubs.component';
+import { WelcomeComponent } from './component/welcome/welcome.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     HeaderComponent,
+    ListClubsComponent,
+    WelcomeComponent,
    
   
   ],

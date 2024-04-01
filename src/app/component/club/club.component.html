@@ -3,7 +3,7 @@
         <form [formGroup]="profileForm" >
 
             <div class="container">
-                <input type="search" placeholder="Search criteras"  formControlName="bookName" #key_words/>
+                <input type="search" placeholder="Search criteras"  formControlName="query" #key_words/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="BookSearch(key_words.value)">Search</button>
             </div><br /> 
 
@@ -30,7 +30,7 @@
                     
                     <div class="form-group">
                         <label for="colFormLabelSm">BookClub description</label>
-                        <textarea id="colFormLabelSm" class="form-control"  formControlName="BookClubDescription" rows="3" placeholder="type Club description"></textarea>
+                        <textarea id="colFormLabelSm" class="form-control"  formControlName="description" rows="3" placeholder="type Club description"></textarea>
                     </div><br />  
                     
                     
@@ -39,9 +39,10 @@
                         <input type="text" class="form-control" readonly id="clubIdInput" placeholder="this field is automaticaly filled">
                     </div><br />
                                 
-                    <button  id="selectionid" [disabled]="!profileForm.valid">Submit</button>
+                    
             
             </div>
+            <button  id="selectionid"   (click)='Addclub()' class="btn btn-primary">Submit</button>
         
         </form>
 
