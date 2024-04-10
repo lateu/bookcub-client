@@ -1,20 +1,13 @@
 export interface BookClub {
-    bookClubId:number,
-    name: string,
+    _id:number,
+    bookname: string,
     description: string,
     ISBN: string,
-    email: string,
-    img: string,
-    book: null,
-
-}
-
-export interface book{
-    isbn:string,
-    title:string,
+    imageurl: string,
     author:string,
-    categoryId:string,
-    category: null,
-    imageUrl: string
+    
+
 }
+
+
     

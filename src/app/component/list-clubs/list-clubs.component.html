@@ -3,29 +3,19 @@
 
 
     <div id="addclubId"><a class="btn btn-primary btn-sm" (click)="AddclubRedirect()">Add new club</a></div>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Author</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let b of clubs">
-          <th scope="row">{{b.bookname}}</th>
-          <td hidden>{{b._id}}</td>
-          <td>{{b.description}}</td>
-          <td>{{b.email}}</td>
-          <td>
-        
-          <a  class="btn btn-success btn-sm"  ><i  id="selectionid" (click)="ShowClubdetails(b.bookClubId,b.name)">Details</i></a>
-        </td>
-        </tr>
-       
-      </tbody>
-    </table>
-    
+
+    <p> Click on a desired bookclub for more options</p>
+
+    <div class="clubs">
+      <div class="clubs" *ngFor="let b of clubs">
+          <div class="club-item" (click) ="ShowClubdetails(b._id)">
+              <p><i class="inforce">Book: </i>{{b.bookname}}</p>
+              <p><i class="inforce">Club description:</i>{{b.description}}</p>
+              <p><i class="inforce">Author: </i>{{b.author}}</p>
+              <p><i class="inforce">Create Date: </i>{{b.createdate}}</p>
+          </div>
+          <div class="spacer"></div>
+      </div>
+  </div>    
     </div>
     

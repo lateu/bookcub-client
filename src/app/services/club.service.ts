@@ -14,7 +14,7 @@
 
     //load club data 
     getClubs() {
-        return this.http.get('http://localhost:8000/clubs');
+        return this.http.get('http://localhost:8000/bookclubs');
     }
 
     //Add a new club
@@ -24,14 +24,14 @@
             console.log(responseData);
         }); 
 
-    // location.reload();
+     location.reload();
     }
 
     // delete a selected club
-    deleteClub(clubId: string) {
-        this.http.delete("http://localhost:8000/bookclub/" + clubId)
+    deleteClub(id: number) {
+        this.http.delete("http://localhost:8000/bookclub/" + id)
             .subscribe(() => {
-                console.log('Deleted: ' + clubId);
+                console.log('Deleted: ' + id);
             });
 
             location.reload();
@@ -44,11 +44,12 @@
         .subscribe(() => {
             console.log('Updated: ' + clubId);
         });
+        location.reload();
     }
 
     //get club by ID
-    getClub(clubId: string) {
-    return this.http.get('http://localhost:8000/bookclub/'+ clubId);
+    getClubById(id: string) {
+    return this.http.get('http://localhost:8000/bookclub/'+ id);
     }
 
 

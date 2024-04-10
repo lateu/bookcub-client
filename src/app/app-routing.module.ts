@@ -6,6 +6,7 @@ import { NewEntryComponent } from './component/new-entry/new-entry.component';
 import { MessageEditorComponent } from './component/message-editor/message-editor.component';
 import { ListClubsComponent } from './component/list-clubs/list-clubs.component';
 import { WelcomeComponent } from './component/welcome/welcome.component';
+import { ClubDetailsComponent } from './component/club-details/club-details.component';
 
 const routes: Routes = [
   {
@@ -19,13 +20,18 @@ const routes: Routes = [
   },
   {
     path: 'edit-club/:_id',  component: ClubComponent
-},
-  {
-    path:'journal',component:RegisterComponent
   },
   {
-    path:'registration', component:NewEntryComponent
+    path: 'clubdetail',  component: ClubDetailsComponent
   },
+  {
+    path:'registration',component:RegisterComponent
+  },
+
+  {
+    path:'journal',component:NewEntryComponent
+  },
+  
   {
     path:'message-editor', component:MessageEditorComponent
   },

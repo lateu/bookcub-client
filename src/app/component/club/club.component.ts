@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { JsonPipe, NgFor } from '@angular/common';
 import { FormGroup, FormControl, ReactiveFormsModule, FormBuilder, Validators, FormArray, FormsModule } from '@angular/forms';
 import { GoogleApiService } from '../../services/google-api.service';
-import { BookClub, book } from '../../models/bookClub';
+import { BookClub } from '../../models/bookClub';
 import { ClubService } from '../../services/club.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-club',
   standalone: true,
@@ -22,31 +23,20 @@ export class ClubComponent{
     description: [''],
   });
 
-  bookToAdd: book = {
-    isbn: "",
-    title: "",
-    author: "",
-    categoryId: '',
-    category: null,
-    imageUrl: ''
-  };
-
-  newbookClub: BookClub = {
-    bookClubId: 0,
-    name: "",
+  club: BookClub = {
+    _id: 0,
+    bookname: "",
     description: "",
     ISBN: "",
-    email: "",
-    img: "",
-    book: null,
-
+    imageurl: "",
+    author:"",
   }
 
 
   show: boolean = false;
 
 
-  constructor(private formBuilder: FormBuilder, private googleApi: GoogleApiService, private clubService: ClubService) { }
+  constructor(private formBuilder: FormBuilder, private googleApi: GoogleApiService, private clubService: ClubService,private router:Router,public route: ActivatedRoute) { }
 
   //ngOnInit() {}
 
@@ -116,6 +106,8 @@ export class ClubComponent{
       
       //var imgsrc = this.booksRetrieved[0].volumeInfo.imageLinks.smallThumbnail
     })
+
+    this.router.navigate(['/list-clubs']);
 
     console.log("*********************************************************************************")
     

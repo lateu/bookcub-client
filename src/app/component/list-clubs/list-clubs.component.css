@@ -1,0 +1,28 @@
+tr:hover {
+    background: lightgray;
+    /*-webkit-transition: background 2s;
+    transition: background 2s; 
+    font-size: 12px;*/
+	}
+
+    .spacer{
+        border-bottom: 5px solid black
+    }
+
+    .clubs{
+        background: lightgray;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .club-item {
+    height: fit-content;
+    }
+   
+
+
+    .club-item:hover{
+        background: rgb(126, 123, 123);
+    }
+    .inforce{
+        font-weight: bold;
+    }

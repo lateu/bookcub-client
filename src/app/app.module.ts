@@ -12,7 +12,8 @@ import { RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import{MessageEditorComponent} from './component/message-editor/message-editor.component';
 import { ListClubsComponent } from './component/list-clubs/list-clubs.component';
-import { WelcomeComponent } from './component/welcome/welcome.component'
+import { WelcomeComponent } from './component/welcome/welcome.component';
+import { ClubDetailsComponent } from './component/club-details/club-details.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { WelcomeComponent } from './component/welcome/welcome.component'
     HeaderComponent,
     ListClubsComponent,
     WelcomeComponent,
+    ClubDetailsComponent,
    
   
   ],

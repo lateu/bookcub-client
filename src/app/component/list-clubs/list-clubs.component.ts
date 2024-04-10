@@ -18,8 +18,7 @@ export class ListClubsComponent {
     .subscribe(
       data=>{
       this.clubs=data;
-      console.log("---------------------------")
-      console.log(this.clubs)
+      
            
       },
       error=>{console.error();
@@ -27,11 +26,19 @@ export class ListClubsComponent {
       )
   }
 
-  ShowClubdetails(id:number, title:string){
-    return this.router.navigate(['bookclubdetail'],{ queryParams: { "clubId": id,"BookClubTitle":title } });
+  ShowClubdetails(id:number){
+   // console.log("----------------ShowClubdetails-----------")
+     // console.log(id)
+    return this.router.navigate(['clubdetail'],{ queryParams: { "_id": id } });
   }
+
   AddclubRedirect(){
     return this.router.navigate(['add-club']);
 
   }
+
+  onDelete(id: number) {
+    this.clubService.deleteClub(id);
+}
+      
 }

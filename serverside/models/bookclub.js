@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const bookclubSchema = new mongoose.Schema({
     description:  { type: String, required: true},
     bookname:  { type: String, required: true},
-    imageurl: { type: String, required: true}
+    author:  { type: String, required: true},
+    imageurl: { type: String, required: true},
+    createdate: { type: Date, required: true}
 });
 
 //use the blueprint to create the model 

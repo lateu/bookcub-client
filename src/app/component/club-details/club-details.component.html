@@ -1,0 +1,36 @@
+<div class="container">
+    <br />
+    <ul id="content">
+        <div class="card" style="width: 80rem; margin-left: 30%;">
+            <img src='{{club.imageurl}}' class="card-img-top" alt="..." width="200" height="200">
+            <p></p>
+          
+            <div class="card-body">
+                <p class="card-title">
+                    <i class="details">Book:</i> {{club.bookname}}
+                </p>
+                <p class="card-text">
+                    <i class="details">Description:</i>{{club.description}}
+                </p>
+                <p class="card-text">
+                    <i class="details">Author:</i>{{club.author}}
+                </p>
+                <span hidden id="bookClubId">{{club._id}}</span>
+               
+
+                <div class="card-body">
+                    <a (click)="AddClubPost(club._id)" class="btn btn-primary">new post</a>
+                    &nbsp;
+                    <a (click)="ViewClubPost(club._id)" class="btn btn-info">view posts</a> &nbsp;
+                    <a class="card-link"> <button type="button"  class="btn btn-success btn-sm"  (click)="AddClubPost(club._id)">update club</button></a>
+                    &nbsp;
+                    <a class="card-link"><button type="button" class="btn btn-danger"  (click)="onDelete(club._id)">Delete</button></a>
+                    &nbsp;
+
+                    
+
+                                  </div>
+            </div>
+        </div>
+    </ul>    
+</div>
