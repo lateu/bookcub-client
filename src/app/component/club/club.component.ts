@@ -4,7 +4,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, FormBuilder, Validators, F
 import { GoogleApiService } from '../../services/google-api.service';
 import { BookClub } from '../../models/bookClub';
 import { ClubService } from '../../services/club.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 @Component({
   selector: 'app-club',
   standalone: true,
@@ -15,30 +15,60 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ClubComponent{
   googleBooks: any;
   booksRetrieved: any;
-  bookName:any;
-  profileForm = this.formBuilder.group({
+  //bookName:any;
+  clubForm = this.formBuilder.group({
     bookName: ['', Validators.required],
     bookSelected: [''],
     query:[''],
     description: [''],
   });
 
-  club: BookClub = {
-    _id: 0,
+  /*club: BookClub = {
+    _id: "0",
     bookname: "",
     description: "",
     ISBN: "",
     imageurl: "",
     author:"",
-  }
+  }*/
 
-
-  show: boolean = false;
+  public mode='Add'; //default
+  public show: boolean = false;
+  private id:any;
+  private club:any;
 
 
   constructor(private formBuilder: FormBuilder, private googleApi: GoogleApiService, private clubService: ClubService,private router:Router,public route: ActivatedRoute) { }
 
-  //ngOnInit() {}
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+        if (paramMap.has('_id')) {
+            this.mode = 'Edit'; /*request had a parameter _id */
+            this.id = paramMap.get('_id');
+
+           
+            this.clubService.getClubById(this.id).subscribe({
+                next: (data => {
+                    
+                    this.club = data;
+                    this.clubForm.patchValue({
+                      description: this.club.description,
+                      bookName: this.club.bookName,
+                      bookSelected: this.club.bookSelected,
+                      query:this.club.keyword
+                    })
+                }),
+
+                error: (err => console.error(err)),
+                complete: (() => console.log('finished loading'))
+            });
+        }
+        else {
+            this.mode = 'Add';
+            this.id = null;
+        }
+    });
+}
 
 
   // API call to get the books list
@@ -54,8 +84,12 @@ export class ClubComponent{
   //Display the image of the book selected
   DisplayBookSelected(selectedItemValue?: string) {
     //let isbn = this.selected
-    let currentIsbn = this.profileForm.get('bookSelected')!.value;
+    //let currentIsbn = this.clubForm.get('bookSelected')!.value;
     //console.log(currentIsbn);
+
+    if(this.mode=='Add'){
+
+    
 
     this.googleApi.GetBookByISBN(selectedItemValue!).subscribe((data: any) => {
 
@@ -83,33 +117,46 @@ export class ClubComponent{
       bookNode?.appendChild(newimg)
     })
 
-
+  }
     
     //console.log(selectedItemValue);
     //console.log(this.booksRetrieved);
 
   }
 
-  Addclub(){
+  AddOrEditclub(){
+    let isbn=this.clubForm.get("bookSelected")?.value!;
 
-    this.googleApi.GetBookByISBN(this.profileForm.get("bookSelected")?.value!).subscribe((data: any) => {
+  
+
+  
+
+    this.googleApi.GetBookByISBN(isbn).subscribe((data: any) => {
 
       //this.googleBooks = data.items;
-      this.bookName = data.items;
-      //console.log(this.bookName[0].volumeInfo.title);
-      let bookname:string=this.bookName[0].volumeInfo.title;
-      let description:string=this.profileForm.get("description")?.value!;
-      let imageurl=this.bookName[0].volumeInfo.imageLinks.smallThumbnail
+      this.booksRetrieved = data.items;
+     
+      let description:string=this.clubForm.get("description")?.value!;
 
-      this.clubService.addClub(description,bookname, imageurl);
+      if(this.mode=="Add"){
+        let bookname:string=this.booksRetrieved[0].volumeInfo.title;
+        let imageurl=this.booksRetrieved[0].volumeInfo.imageLinks.smallThumbnail;
+
+      this.clubService.addClub(description,bookname, isbn,imageurl,this.clubForm.get('query')?.value!);
+    }else{
+      console.log("*************************************UPDATE REQUEST********************************************")
+      console.log(this.id)
+      this.clubService.updateClub(this.id,this.clubForm.get("description")?.value!);
       
+    }
       
       //var imgsrc = this.booksRetrieved[0].volumeInfo.imageLinks.smallThumbnail
     })
+ 
 
     this.router.navigate(['/list-clubs']);
 
-    console.log("*********************************************************************************")
+    
     
     //console.log(this.bookName)
     //console.log(this.profileForm.value)

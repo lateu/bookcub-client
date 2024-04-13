@@ -1,0 +1,11 @@
+<div class="container">
+    <a routerLink="/addMessage"><i class="menu-item">Add Message</i></a>
+
+    <div>
+        <ul *ngFor ="let message of messages let i = index">
+            <li> {{message._id}}: {{message.firstName}} {{message.lastName}} (index {{i}}) 
+            </li>
+        </ul>
+      </div> 
+</div>
+

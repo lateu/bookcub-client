@@ -6,7 +6,10 @@ const bookclubSchema = new mongoose.Schema({
     bookname:  { type: String, required: true},
     author:  { type: String, required: true},
     imageurl: { type: String, required: true},
+    isbn: { type: String, required: true},
+    keyword: { type: String, required: true},
     createdate: { type: Date, required: true}
+    
 });
 
 //use the blueprint to create the model 

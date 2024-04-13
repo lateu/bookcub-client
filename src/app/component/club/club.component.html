@@ -1,6 +1,6 @@
     <div class="container" id="clubContainer">
         <div class="bookclubcreationheader"> BOOKCLUB CREATION FORM</div><br /> 
-        <form [formGroup]="profileForm" >
+        <form [formGroup]="clubForm" >
 
             <div class="container">
                 <input type="search" placeholder="Search criteras"  formControlName="query" #key_words/>
@@ -42,7 +42,7 @@
                     
             
             </div>
-            <button  id="selectionid"   (click)='Addclub()' class="btn btn-primary">Submit</button>
+            <button  id="selectionid"   (click)='AddOrEditclub()' class="btn btn-primary">Submit</button>
         
         </form>
 

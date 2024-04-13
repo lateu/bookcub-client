@@ -5,6 +5,7 @@
     const mongoose = require('mongoose');
     //specify where to find the schema
     const Bookclub = require('./models/bookclub');
+    const Message = require('./models/message');
     //connect and display the status 
     mongoose.connect('mongodb://localhost:27017/IT6203_project')
         .then(() => { console.log("connected"); })
@@ -25,6 +26,7 @@
     app.use(bodyParser.json())
 
 
+    /*#################################CLUB COMPONENT METHODS##############################################*/
     app.get('/bookclubs', (req, res, next) => {
         //call mongoose method find club list
         Bookclub.find() 
@@ -61,7 +63,9 @@
             bookname: req.body.bookname,
             imageurl:req.body.imageurl,
             author:"TBD",
-            createdate: today,
+            isbn:req.body.isbn,
+            keyword:req.body.key_word,
+            createdate: today
         });
         //send the document to the database 
         club.save()
@@ -78,6 +82,91 @@
             res.status(200).json("Deleted!");
         });
     });
+
+     //serve incoming put requests to /bookclub 
+     app.put('/bookclub/:id', (req, res, next) => { 
+        console.log("id: " + req.params.id) 
+        // check that the parameter id is valid 
+        if (mongoose.Types.ObjectId.isValid(req.params.id)) { 
+            //find a document and set new first and last names 
+            Bookclub.findOneAndUpdate( 
+                {_id: req.params.id}, 
+                {$set:{ 
+                    description : req.body.description, 
+                    keyword : req.body.key_word 
+                }}, 
+                {new:true} 
+            ) 
+            .then((club) => { 
+                if (club) { //what was updated 
+                    console.log(club); 
+                } else { 
+                    console.log("no data exist for this id"); 
+                } 
+            }) 
+            .catch((err) => { 
+                console.log(err); 
+            }); 
+        } else { 
+            console.log("please provide correct id"); 
+        } 
+    });
+
+       /*#################################END CLUB COMPONENT METHODS##############################################*/
+
+       /*#################################MESSAGE COMPONENT METHODS##############################################*/
+       
+
+       app.post('/messages', (req, res, next) => {
+
+        const message = new Message({
+    
+            firstName: req.body.firstName,
+    
+            lastName: req.body.lastName,
+                        
+            yourMessage: req.body.yourMessage
+        });
+    
+        message.save()
+    
+            .catch(err => {console.log('Error:' + err);});
+    
+    });
+     
+     
+     
+     
+    app.get('/messages', (req, res, next) => {
+    
+        Message.find() 
+    
+        .then(data => res.status(200).json(data))
+    
+        .catch(err => {
+    
+        console.log('Error: ${err}');
+    
+        res.status(500).json(err);
+    
+        });
+     
+    });
+     
+     
+    
+app.delete("/messages/:id", (req, res, next) => {
+
+    Message.deleteOne({ _id: req.params.id }).then(result => {
+
+        console.log(result);
+
+        res.status(200).json("Deleted!");
+
+    });
+});
+    
+    
 
 
 

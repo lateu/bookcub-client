@@ -18,8 +18,8 @@
     }
 
     //Add a new club
-    addClub(description: string, bookname: string,imageurl:string) {
-    this.http.post('http://localhost:8000/bookclub',{ description, bookname,imageurl })
+    addClub(description: string, bookname: string,isbn:string,imageurl:string,key_word:string) {
+    this.http.post('http://localhost:8000/bookclub',{ description, bookname,isbn,imageurl,key_word })
         .subscribe((responseData) => {
             console.log(responseData);
         }); 
@@ -28,7 +28,7 @@
     }
 
     // delete a selected club
-    deleteClub(id: number) {
+    deleteClub(id: string) {
         this.http.delete("http://localhost:8000/bookclub/" + id)
             .subscribe(() => {
                 console.log('Deleted: ' + id);
@@ -38,11 +38,11 @@
     }
 
     // update club data
-    updateClub(clubId: string,description: string, bookName: string) {
+    updateClub(id: string,description: string) {
         this.http.put("http://localhost:8000/bookclub/" + 
-        clubId,{ description, bookName })
+        id,{ description, })
         .subscribe(() => {
-            console.log('Updated: ' + clubId);
+            console.log('Updated: ' + id);
         });
         location.reload();
     }

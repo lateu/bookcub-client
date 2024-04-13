@@ -7,13 +7,17 @@
     <p> Click on a desired bookclub for more options</p>
 
     <div class="clubs">
-      <div class="clubs" *ngFor="let b of clubs">
-          <div class="club-item" (click) ="ShowClubdetails(b._id)">
-              <p><i class="inforce">Book: </i>{{b.bookname}}</p>
-              <p><i class="inforce">Club description:</i>{{b.description}}</p>
-              <p><i class="inforce">Author: </i>{{b.author}}</p>
-              <p><i class="inforce">Create Date: </i>{{b.createdate}}</p>
+      <div class="clubs" *ngFor="let club of clubs">
+          <div class="club-item" (click) ="ShowClubdetails(club._id)">
+              <p><i class="inforce">Book: </i>{{club.bookname}}</p>
+              <p><i class="inforce">Club description:</i>{{club.description}}</p>
+              <p><i class="inforce">Author: </i>{{club.author}}</p>
+              <p><i class="inforce">Create Date: </i>{{club.createdate}}</p>
           </div>
+          
+          <a class="card-link" id="button-edit" [routerLink]="['/editClub', club._id]"> Edit</a> &nbsp; &nbsp; <a class="card-link" id="button-delete"  (click)="onDelete(club._id)">Delete</a>
+          
+     
           <div class="spacer"></div>
       </div>
   </div>    

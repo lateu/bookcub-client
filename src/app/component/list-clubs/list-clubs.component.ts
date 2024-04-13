@@ -17,16 +17,14 @@ export class ListClubsComponent {
     this.clubService.getClubs()
     .subscribe(
       data=>{
-      this.clubs=data;
-      
-           
+      this.clubs=data;           
       },
       error=>{console.error();
       }
       )
   }
 
-  ShowClubdetails(id:number){
+  ShowClubdetails(id:string){
    // console.log("----------------ShowClubdetails-----------")
      // console.log(id)
     return this.router.navigate(['clubdetail'],{ queryParams: { "_id": id } });
@@ -37,7 +35,7 @@ export class ListClubsComponent {
 
   }
 
-  onDelete(id: number) {
+  onDelete(id: string) {
     this.clubService.deleteClub(id);
 }
       

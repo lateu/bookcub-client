@@ -1,5 +1,5 @@
 export interface BookClub {
-    _id:number,
+    _id:string,
     bookname: string,
     description: string,
     ISBN: string,

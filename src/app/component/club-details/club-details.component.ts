@@ -11,7 +11,7 @@ import { BookClub } from '../../models/bookClub';
 export class ClubDetailsComponent {
   public bookclubs:any;
  club: BookClub= {
-    _id:0,
+    _id:"0",
     bookname: "",
     description: "",
     ISBN: "",
@@ -44,18 +44,21 @@ export class ClubDetailsComponent {
   console.log( this.bookclubs)
   }
 
-  AddClubPost(id:number){
+
+
+
+  /*
+
+  AddClubPost(id:string){
     return this.router.navigate(['AddClubPost'],{ queryParams: { "_id": id} });
 
   }
 
-  ViewClubPost(id:number){
+  ViewClubPost(id:string){
     return this.router.navigate(['Viewclubpost'],{ queryParams: { "_id": id } });
 
-  }
+  }*/
 
-  onDelete(id: number) {
-    this.clubService.deleteClub(id);
-}
+  
 
 }

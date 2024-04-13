@@ -26,3 +26,14 @@ tr:hover {
     .inforce{
         font-weight: bold;
     }
+
+    #button-edit{
+        margin-left: 85%;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    #button-delete{
+        font-weight: bold;
+        font-size: 15px;
+    }
