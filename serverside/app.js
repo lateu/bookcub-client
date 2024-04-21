@@ -7,7 +7,10 @@
     const Bookclub = require('./models/bookclub');
     const Message = require('./models/message');
     //connect and display the status 
-    mongoose.connect('mongodb://localhost:27017/IT6203_project')
+    /*mongoose.connect('mongodb://localhost:27017/IT6203_project')
+        .then(() => { console.log("connected"); })
+        .catch(() => { console.log("error connecting"); });*/
+    mongoose.connect('mongodb+srv://demo-user:4lrP9KRyQPwc4bg8@cluster0.1ne3jgw.mongodb.net/IT6203_project')
         .then(() => { console.log("connected"); })
         .catch(() => { console.log("error connecting"); });
 
