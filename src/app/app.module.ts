@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import {ClubComponent} from '../app/component/club/club.component';
 import{ HeaderComponent} from '../app/component/header/header.component';
-import { RegisterComponent } from '../app/component/register/register.component';
-import { NewEntryComponent } from './component/new-entry/new-entry.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -19,7 +17,6 @@ import { MessageFormComponent } from './component/message-form/message-form.comp
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
     HeaderComponent,
     ListClubsComponent,
     WelcomeComponent,
@@ -37,7 +34,6 @@ import { MessageFormComponent } from './component/message-form/message-form.comp
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    NewEntryComponent,
     ClubComponent,
   
     

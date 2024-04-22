@@ -1,0 +1,50 @@
+<div class="container">
+    <h3>{{mode}} Journal Form </h3>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="journalForm">
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName">
+        </div><br />
+
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" id="lastname" formControlName="lastName" name="lastName">
+        </div><br />
+
+        <div class="form-group">
+            <label for="booktitle"> Book Title <Title></Title></label>
+            <input type="text" class="form-control" id="booktitle" formControlName="bookTitle" name="bookTitle">
+        </div><br />
+
+
+        <label for="entry">Date: </label>
+        <input id="entry" type="text" formControlName="Date" name="Date">
+
+
+
+        <h3>Let us know what you thought of the book!</h3>
+
+
+        <div class="form-group">
+            <p><label for="exampleFormControlTextarea1">
+                    <h3> </h3>
+                </label></p>
+            <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1"
+                formControlName="journalEntry" name="journalEntry" rows="10x7%"></textarea>
+        </div>
+<li>
+        <p>
+            <br><button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </p>
+
+      <!--
+        
+        <p> 
+            <br><button type="submit" class="btn btn-primary mb-2">List Entries</button>
+        </p>-->
+    </li>
+   
+    </form>
+</div>

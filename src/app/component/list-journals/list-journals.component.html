@@ -1,0 +1,24 @@
+
+<div class="container">
+ 
+  <div id="addjournalId"><a class="btn btn-primary btn-sm" (click)="goToaddJournal()">Add Journal entry</a></div>
+   
+<h3>Journal Entries are listed here!</h3>
+
+  
+
+<div>
+    <ul *ngFor ="let journal of journals let i = index">
+        <li> {{journal.firstName}} {{journal.lastName}} {{journal.Date}}   {{journal.bookTitle}}  {{journal.JournalEntry}} 
+            <button type="submit" class="btn btn-primary btn-sm">Update</button> &nbsp;
+            <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+        </li>
+    </ul>
+  </div> 
+
+<!--
+  <app-journal-form></app-journal-form>
+-->
+  
+
+</div>

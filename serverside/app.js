@@ -6,6 +6,7 @@
     //specify where to find the schema
     const Bookclub = require('./models/bookclub');
     const Message = require('./models/message');
+    const Journal = require('./models/journal');
     //connect and display the status 
     /*mongoose.connect('mongodb://localhost:27017/IT6203_project')
         .then(() => { console.log("connected"); })
@@ -169,7 +170,67 @@ app.delete("/messages/:id", (req, res, next) => {
     });
 });
     
+
+/*#################################JOURNAL COMPONENT METHODS##############################################*/
+
+app.get('/journals', (req, res, next) => {
+    //call mongoose method find journal list
+    Journal.find()
+        //if data is returned, send data as a response 
+        .then(data => res.status(200).json(data))
+        .catch(err => {
+            console.log('Error: ${err}');
+            res.status(500).json(err);
+
+        });
+    });    
+
+    //find a journal entry based on the id
+    app.get('/journal/:id', (req, res, next) => {
+        Journal.findOne({ _id: req.params.id })
+            //if data is returned, send data as a response 
+            .then(data => {
+                res.status(200).json(data)
+                console.log(data);
+            })
+            //if error, send internal server error
+            .catch(err => {
+                console.log('Error: ${err}');
+                res.status(500).json(err);
+            });
+    });
     
+    app.post('/journals', (req, res, next) => {
+        const journal = new Journal({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            bookTitle: req.body.bookTitle,
+            Date: req.body.Date,
+            journalEntry: req.body.journalEntry
+        });
+        //send the document to the database 
+        journal.save()
+            //in case of success
+            .then(() => { console.log('success'); })
+            //if error
+            .catch(err => { console.log('Error:' + err); });
+        console.log(journal.firstName+""+journal.lastName+""+journal.bookTitle+""+journal.Date+""+journal.journalEntry);
+    });
+
+    //:id is a dynamic parameter that will be extracted from the URL
+    app.delete("/journal/:id", (req, res, next) => {
+        Journal.deleteOne({ _id: req.params.id }).then(result => {
+            console.log(result);
+            res.status(200).json("Deleted!");
+
+        });
+    });
+
+
+/*#################################END JOURNAL COMPONENT METHODS##############################################*/
+
+
+        
 
 
 
